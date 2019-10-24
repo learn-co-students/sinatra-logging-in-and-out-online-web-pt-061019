@@ -18,18 +18,16 @@ require 'pry'
       session[:user_id] = @user.id
       redirect '/account'
     elsif @user == nil
-      redirect '/error'
+      erb :error
     end
   end
 
   get '/account' do
-
+    if session[:user_id] != nil
     erb :account
-  end
-
-  get '/error' do
-
+    else
     erb :error
+  end
   end
 
   get '/logout' do
